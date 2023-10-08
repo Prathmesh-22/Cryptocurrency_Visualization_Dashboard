@@ -1,0 +1,197 @@
+libraries eje,express,nodemon,request,body-parser,multer
+
+
+
+
+1 In web development, particularly when working with server-side frameworks like Ruby on Rails, Django,
+ or Express.js (for Node.js), "send" and "render" are often used to handle HTTP responses. 
+ Let's explain the differences between them and when to use each one:
+
+1. **Send**:
+   - **Purpose**: The "send" method is typically used to send data as an HTTP response.
+   - **Usage**: It's commonly used when you want to send simple data types like strings, JSON objects, or plain HTML as a response.
+   - **Example (Node.js with Express)**:
+     ```javascript
+     res.send("Hello, World!");
+     ```
+
+2. **Render**:
+   - **Purpose**: The "render" method is used to render views or templates on the server and then send the resulting HTML as an HTTP response.
+   - **Usage**: It's primarily used when you want to generate HTML dynamically using a template engine (e.g., EJS, Handlebars, Pug) and then send that HTML as a response.
+   - **Example (Node.js with Express using EJS)**:
+     ```javascript
+     res.render("index", { title: "Homepage" });
+     ```
+     In this example, "index" is a template file (e.g., index.ejs), and the second argument is an 
+     object containing data to be passed to the template for rendering.
+
+**Which one to use**:
+- Use **"send"** when you want to send simple data or plain text as an HTTP response. It's more suitable for API endpoints that return JSON data, for example.
+- Use **"render"** when you want to generate HTML views dynamically using templates. It's ideal for rendering web pages with dynamic content.
+
+The choice between "send" and "render" depends on the specific requirements of your application. 
+If you're building a single-page application with a front-end framework like React or Vue.js and 
+you handle rendering on the client-side, you might use "send" for your server to provide data. 
+However, for traditional server-rendered web pages, "render" is typically the better choice.
+
+
+2 Importing Required Modules:
+
+const express = require('express'): This line imports the Express.js framework, allowing you to create a web application.
+const app = express(): Here, you create an instance of the Express application. This app object will be used to configure routes and handle HTTP requests.
+Setting Port Number:
+
+const port = 3000: This line sets the port number to 3000, where your server will listen for incoming HTTP requests. You can change this port number if needed.
+Static File Middleware:
+
+app.use(express.static(__dirname + '/public')): This line configures Express to serve static files from a directory named "public." Static files can include HTML, CSS, JavaScript, images, and more. The __dirname variable represents the current directory where the script is located.
+
+View Engine Configuration:
+
+app.set('view engine', 'ejs'): Express is configured to use the EJS (Embedded JavaScript) template engine for rendering dynamic views. EJS allows you to embed JavaScript code within HTML templates.
+Route Handling:
+
+app.get('/', (req, res) => {...}): This code defines a route for the root URL ("/"). When a user accesses the root URL, the callback function is executed.
+Inside the callback function:
+res.render('index'): This line renders the "index" view using the EJS template engine. It will look for an EJS template file named "index.ejs" in a specific directory (usually a "views" folder).
+Server Initialization:
+
+app.listen(port, () => {...}): This starts the Express server and makes it listen on the specified port (in this case, 3000). When the server starts, the callback function is executed, and a message is logged to the console, indicating that the server is listening.
+In summary, this code sets up a basic Express.js web server that serves static files from a "public" directory and renders a dynamic EJS view when users access the root URL. It's a simple starting point for building web applications using Express.js and EJS. You can add more routes, views, and functionality as needed for your project.
+
+
+3 Using `nodemon` instead of `node` to run your Node.js application during development is a common practice for several reasons:
+
+1. **Automatic Restart**: Nodemon is a tool specifically designed for development purposes. When you run your Node.js application with `nodemon`, it automatically monitors the files in your project directory. If any file changes (e.g., your JavaScript files), it automatically restarts the Node.js server. This saves you the trouble of manually stopping and starting the server every time you make changes.
+
+2. **Improved Developer Experience**: Nodemon provides a smoother and more efficient development experience. You can focus on writing code and testing your application without the need to restart the server manually each time you make changes. This can significantly speed up development.
+
+3. **Error Handling**: Nodemon can detect and display error messages in the console. If there are syntax errors or runtime errors in your code, Nodemon will capture them and display them in the terminal, making it easier to identify and fix issues.
+
+4. **Custom Configuration**: Nodemon allows you to customize its behavior through configuration files (e.g., `nodemon.json`). You can specify which files to watch, which directories to ignore, and other settings to suit your project's needs.
+
+5. **Cross-Platform**: Nodemon works on multiple platforms (Windows, macOS, Linux), making it a versatile choice for developers working on various environments.
+
+6. **Integration with Build Tools**: Nodemon can be easily integrated into build and development workflows. It's often used in conjunction with other tools like `npm scripts` or build tools like Webpack or Gulp.
+
+Here's an example of how you can use Nodemon in an `npm` script in your `package.json` file:
+
+```json
+"scripts": {
+  "start": "nodemon your-app.js"
+}
+```
+
+By setting up an npm script like this, you can start your application with `npm start`, and it will use Nodemon to monitor and automatically restart your server as needed.
+
+In summary, `nodemon` is a valuable tool for Node.js development that enhances productivity by 
+automatically restarting your server, providing error feedback, and offering customization options. 
+It's especially useful during the development phase of your project.
+
+
+4 `package.json` and `package-lock.json` are essential files in Node.js projects, and they serve specific purposes in managing project dependencies and ensuring consistent builds across different environments. Here's why they are created:
+
+1. **package.json**:
+   - **Dependency Management**: The `package.json` file is used to specify the dependencies (both runtime and development) for your Node.js project. Dependencies are external packages or libraries that your project relies on.
+   - **Version Information**: It includes information about each dependency, such as the package name, version number, and often a description.
+   - **Scripts**: `package.json` can also contain scripts that define various tasks for your project, such as running tests, building your application, or starting the server.
+   - **Project Metadata**: Aside from dependencies, `package.json` may contain metadata about your project, such as the project's name, author, license, and more.
+
+   Example of a `package.json` file:
+   ```json
+   {
+     "name": "my-node-app",
+     "version": "1.0.0",
+     "description": "A Node.js application",
+     "dependencies": {
+       "express": "^4.17.1"
+     },
+     "devDependencies": {
+       "nodemon": "^2.0.12"
+     },
+     "scripts": {
+       "start": "node app.js",
+       "dev": "nodemon app.js"
+     }
+   }
+   ```
+
+2. **package-lock.json**:
+   - **Dependency Locking**: The `package-lock.json` file is automatically generated when you install dependencies using npm (Node Package Manager). Its primary purpose is to lock down the specific versions of each dependency that your project uses. This ensures that every developer and every environment will have the same dependency versions.
+   - **Deterministic Builds**: With `package-lock.json`, you achieve deterministic builds, meaning that no matter where or when your project is built, it will always use the exact same versions of dependencies.
+   - **Faster and Safer Installs**: `package-lock.json` speeds up dependency installation because npm can use it to avoid unnecessary network requests. It also helps prevent accidental updates to dependencies when you run `npm install`.
+
+   Example of a simplified `package-lock.json` file:
+   ```json
+   {
+     "name": "my-node-app",
+     "version": "1.0.0",
+     "lockfileVersion": 2,
+     "requires": true,
+     "packages": {
+       "express": {
+         "version": "4.17.1",
+         "resolved": "https://registry.npmjs.org/express/-/express-4.17.1.tgz"
+       }
+     },
+     "dependencies": {
+       "express": {
+         "version": "4.17.1",
+         "integrity": "sha512-..."
+       }
+     }
+   }
+   ```
+
+In summary, `package.json` is used for specifying project metadata and dependencies, while `package-lock.json` is generated to ensure that dependencies are locked to specific versions, providing consistency and reliability when building and running your Node.js applications. These files are essential for Node.js projects and help manage dependencies effectively.
+
+HTTP defines various methods that clients (such as web browsers) can use to request and interact with resources on a web server. Two of the most commonly used HTTP methods are "GET" and "POST." Here are the key differences between them:
+
+1. **Purpose**:
+
+   - **GET**:
+     - The "GET" method is used to request data from a specified resource.
+     - It retrieves data without causing any side effects on the server or altering the resource's state.
+     - Typically, "GET" requests are used for fetching information from the server, such as web pages, images, or data.
+
+   - **POST**:
+     - The "POST" method is used to submit data to be processed to a specified resource.
+     - It can include data in the request body, making it suitable for sending data that needs to be stored or processed on the server.
+     - "POST" requests can result in changes to the server's state, such as adding new records to a database.
+
+2. **Data in the Request**:
+
+   - **GET**:
+     - Data is usually included in the URL as query parameters.
+     - Data is visible in the URL, which makes it less secure for sensitive information.
+     - There is a limitation on the amount of data that can be sent in a "GET" request (typically constrained by the maximum URL length).
+
+   - **POST**:
+     - Data is sent in the request body.
+     - Data is not visible in the URL, providing a higher level of security, especially for sensitive information.
+     - "POST" requests can handle larger data payloads compared to "GET."
+
+3. **Caching**:
+
+   - **GET**:
+     - "GET" requests are often cached by browsers and proxy servers because they are considered safe and idempotent (repeated requests do not have additional side effects).
+     - Cached "GET" responses can improve performance when retrieving the same resource multiple times.
+
+   - **POST**:
+     - "POST" requests are generally not cached because they may have side effects on the server.
+     - Sending the same "POST" request multiple times may result in unintended consequences, so caching is not typically applied to "POST" requests.
+
+4. **Idempotence**:
+
+   - **GET**:
+     - "GET" requests are idempotent, meaning that making the same request multiple times should have the same effect as making it once.
+
+   - **POST**:
+     - "POST" requests are not inherently idempotent because they may lead to different outcomes on the server each time they are submitted. For example, submitting a payment request multiple times could result in multiple charges.
+
+In summary, "GET" is used for retrieving data from the server, while "POST" is used for sending data to the server to create or modify resources. The choice between them depends on the specific task and the nature of the data being exchanged in the HTTP request.
+
+<!-- <h1>Hello <%= data %></h1>  recieving data-->
+    <!-- action mai url mention karte h but agar woh nahi likha toh form samjh jaata h ki 
+    mera jo data h woh hume waapas yahi post karna h
+    onchnage event listener h -->

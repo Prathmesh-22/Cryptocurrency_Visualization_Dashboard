@@ -1,0 +1,114 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body background */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://wallpaperaccess.com/full/2095724.png');
+    background-size: cover;
+    height: 100vh;
+}
+
+/* Mask with gradient */
+.mask {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    height: 100%;
+}
+
+/* Navigation bar styles */
+.navbar {
+    background-color: #17a2b8;
+    padding: 10px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Coin select form styles */
+#coinSelectForm {
+    display: inline-block;
+}
+
+.form-select {
+    padding: 5px;
+    border: none;
+    background-color: #fff;
+    color: #333;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Content container */
+.content-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    color: white;
+}
+
+/* Crypto name styles */
+#cryptoName {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Card container */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Card styles */
+.card {
+    flex: 0 1 calc(33.33% - 20px);
+    background-color: rgb(43, 43, 43);
+    color: aqua;
+    border: none;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.card h2 {
+    font-family: 'NHaasGroteskDSPro-65Md';
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.percentage {
+    font-family: 'NHaasGroteskDSPro-65Md';
+    font-size: 1.5rem;
+}
+
+.price {
+    font-family: 'NHaasGroteskDSPro-65Md';
+    font-size: 1.5rem;
+    color: aqua;
+}
+
+/* Price container */
+.price-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.label {
+    font-family: 'NHaasGroteskDSPro-65Md';
+    font-size: 1rem;
+    color: white;
+}
+
+/* Add more styles as needed for your specific elements */

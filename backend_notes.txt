@@ -1,0 +1,26 @@
+Certainly! This is a Node.js application using the Express framework for building a web server. It fetches data about cryptocurrencies and displays it on a web page. Here's an explanation in easy-to-understand terms:
+
+1. **Dependencies**: The code begins by importing various libraries (dependencies) that are needed to build the web application. These include `express`, `request`, `multer`, `body-parser`, and more.
+
+2. **Setting Up Express**: It sets up an Express application and specifies that it should listen on port 3000.
+
+3. **Middleware**: Several middleware functions are configured using `app.use(...)`. Middleware functions are functions that run in between receiving a request and sending a response. In this code:
+
+   - `bodyParser` is used to parse incoming requests with JSON payloads.
+   - `express.static` serves static files (like CSS and JavaScript) from a folder named "public."
+   - `app.set('view engine', 'ejs')` configures Express to use the EJS template engine for rendering HTML pages.
+   - `upload` is set up to handle file uploads, although it's not used in this code.
+
+4. **Data Variables**: The code initializes some variables (`mData`, `coinName`, `mChart`) to store cryptocurrency data. `mData` will store general cryptocurrency information, `coinName` will store the selected coin's name, and `mChart` will store cryptocurrency market chart data.
+
+5. **`resData` Function**: This function is defined to fetch cryptocurrency data using API requests. It takes the `coinName` as an input and fetches general data about the cryptocurrency (`mData`) and market chart data (`mChart`). It does this by making API requests to a cryptocurrency data provider (CoinGecko).
+
+6. **Routes**: The code defines two routes:
+
+   - `GET '/'`: This route is used when you visit the root URL (e.g., http://localhost:3000/). It fetches cryptocurrency data for a default coin (Bitcoin) and renders an HTML page (`index.ejs`) with that data.
+
+   - `POST '/'`: This route is used when you submit a form on the webpage to select a different cryptocurrency. It updates the `coinName` variable based on the selected coin and fetches data for that coin. Then, it re-renders the HTML page with the updated data.
+
+7. **Server Listening**: The application starts listening on port 3000, and a message is printed to the console to indicate that the server is running.
+
+In simple terms, this code sets up a web server that allows you to view information about cryptocurrencies. You can select a cryptocurrency from a dropdown, and it will fetch and display data about that cryptocurrency on a web page.
